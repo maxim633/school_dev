@@ -1,0 +1,281 @@
+.main-container {
+    width: 100%;
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header {
+    width: 30%;
+    height: 50px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-bar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.stat-item {
+    width: 100px;
+    height: 40px;
+}
+
+.flag {
+    width: 70px;
+    height: 40px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+}
+
+.stat-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.stat-number {
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.user-stats {
+    width: 35%;
+    height: 50px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo {
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-item{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 2px solid rgba(42, 72, 155, 0.562);   
+    border-radius: 20px;
+    background-color: rgb(86, 255, 255);
+}
+
+.nav-item:hover{
+    border: 2px solid rgba(21, 31, 88, 0.719);
+    background-color: rgb(23, 121, 121);
+    }
+
+    .nav-item:active{
+    border: 2px solid rgba(16, 32, 77, 0.562);
+    background-color: rgb(65, 255, 255);
+    }
+
+.nav-item-margin-top{
+    margin-top: 100px;
+}
+
+.profile {
+    display: flex;
+}
+
+.profile-name {
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.profile-photo {
+    width: 40px;
+    height: 40px;
+}
+
+.shop {
+    display: flex;
+}
+
+.shop-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.shop-name {
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.green{
+    width: 30%;
+    height: 300px;
+    background-color: aquamarine;
+}
+
+.fire_number{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.blue2{
+    width: 35%;
+    height: 50px;
+    /* background-color: blue; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.purple_diamond{
+    display: flex;
+    align-items: center;
+}
+
+.diamond{
+    width: 70px;
+    height: 80px;
+}
+
+.diamond_number{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.purple_heart{
+    display: flex;
+    align-items: center;
+}
+
+.heart{
+    width: 70px;
+    height: 80px;
+}
+
+.heart_number{
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Schooldev_logo{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.PYTHON{
+    margin: 0%;
+    margin-top: 100px;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Roblox_Studio{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Lua{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Profile{
+    display: flex;
+}
+
+.Profile_Name{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Profile_Photo{
+    width: 40px;
+    height: 40px;
+}
+
+.Shop{
+    display: flex;
+}
+
+.Shop_Photo{
+    width: 40px;
+    height: 40px;
+}
+
+.Shop_Name{
+    margin: 0%;
+    font-size: 40px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.Leaderbord{
+    color: rgba(79, 95, 95, 0.548);
+    margin: 0%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.nav-button{
+    border: 2px solid rgba(69, 115, 241, 0.692);   
+    border-radius: 20px;
+}
+
+.stats-leaderbord{
+    display: flex;
+}
+
+
+.CONGRATULATIONS{
+    color: rgb(29, 26, 26);
+    margin: 0%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.shield{
+    width: 50px;
+    height: 50px;
+}
+
+.paragrah{
+    color: rgba(79, 95, 95, 0.548);
+    margin: 0%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.link{
+    margin: 0%;
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border: 2px solid rgba(42, 72, 155, 0.562);   
+    border-radius: 20px;
+    background-color: rgb(86, 255, 255);
+    color: black;
+    text-decoration: none;
+}
+
+.Quest{
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+
+.View_all{
+    font-size: 20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgb(26, 125, 255);
+    text-decoration: none;
+}
