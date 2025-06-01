@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опрос: Какой курс вам подходит?</title>
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #ff6b6b;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            animation: fadeIn 0.5s ease;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 2.2rem;
+        }
+
+        .description {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .question {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .question:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .question p {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: white;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid #ddd;
+        }
+
+        .option:hover {
+            background: #f0f4ff;
+            border-color: var(--primary);
+        }
+
+        .option input {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #submit {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 20px;
+        }
+
+        #submit:hover {
+            background: #3a5bef;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: var(--border-radius);
+            animation: fadeIn 0.8s ease;
+            display: none;
+        }
+
+        #result h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .course-result {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--success);
+            text-align: center;
+            margin: 15px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 15px;
+            background: white;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: var(--box-shadow);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 10px;
+            background: #e9ecef;
+            border-radius: 5px;
+            margin-top: 20px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Какой курс вам подходит?</h1>
+        <p class="description">Ответьте на 10 вопросов, чтобы узнать, какой курс (Lua, Minecraft, Python или Scratch) вам лучше выбрать.</p>
+        
+        <div id="quiz">
+            <!-- Вопросы будут добавляться динамически -->
+        </div>
+        
+        <button id="submit">Узнать результат</button>
+        
+        <div id="result">
+            <h2>Ваш результат</h2>
+            <div class="course-result" id="course-result"></div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="stats" id="stats"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "1. Какой тип проектов вам интересен?",
+                options: [
+                    "Игры (Roblox, Minecraft)",
+                    "Программы и автоматизация",
+                    "Мультимедиа и анимация",
+                    "Модификации игр"
+                ],
+                answers: ["Minecraft", "Python", "Scratch", "Lua"]
+            },
+            {
+                question: "2. Какой уровень сложности вас интересует?",
+                options: [
+                    "Очень простой (визуальное программирование)",
+                    "Средний (удобный синтаксис)",
+                    "Сложный (гибкость и мощь)",
+                    "Зависит от задачи"
+                ],
+                answers: ["Scratch", "Lua", "Python", "Minecraft"]
+            },
+            {
+                question: "3. Хотите ли вы создавать моды для игр?",
+                options: [
+                    "Да, для Minecraft",
+                    "Да, для Roblox",
+                    "Нет, мне интересны другие проекты",
+                    "Может быть, простые скрипты"
+                ],
+                answers: ["Minecraft", "Lua", "Python", "Scratch"]
+            },
+            {
+                question: "4. Вам нравится визуальное программирование (перетаскивание блоков)?",
+                options: [
+                    "Да, это удобно!",
+                    "Нет, предпочитаю писать код",
+                    "Может быть, для начала",
+                    "Только если это Minecraft"
+                ],
+                answers: ["Scratch", "Python", "Lua", "Minecraft"]
+            },
+            {
+                question: "5. Хотите ли вы работать с искусственным интеллектом или данными?",
+                options: [
+                    "Да, очень!",
+                    "Нет, мне это неинтересно",
+                    "Возможно в будущем",
+                    "Только если это игры"
+                ],
+                answers: ["Python", "Scratch", "Lua", "Minecraft"]
+            },
+            {
+                question: "6. Вам интересно разрабатывать свои игры?",
+                options: [
+                    "Да, полные игры (Python/Pygame)",
+                    "Да, но простые (Scratch)",
+                    "Да, моды для Minecraft",
+                    "Да, скрипты для Roblox (Lua)"
+                ],
+                answers: ["Python", "Scratch", "Minecraft", "Lua"]
+            },
+            {
+                question: "7. Какой язык кажется вам привлекательным?",
+                options: [
+                    "Простой, как Scratch",
+                    "Универсальный, как Python",
+                    "Для игр, как Lua",
+                    "Для Minecraft (не язык, но моды)"
+                ],
+                answers: ["Scratch", "Python", "Lua", "Minecraft"]
+            },
+            {
+                question: "8. Вам важно быстро увидеть результат?",
+                options: [
+                    "Да, хочу сразу видеть эффект",
+                    "Нет, готов учиться долго",
+                    "Зависит от проекта",
+                    "Только если это игра"
+                ],
+                answers: ["Scratch", "Python", "Lua", "Minecraft"]
+            },
+            {
+                question: "9. Вам нравится Minecraft?",
+                options: [
+                    "Да, хочу делать моды!",
+                    "Нет, не играю",
+                    "Играю, но не хочу программировать",
+                    "Предпочитаю Roblox"
+                ],
+                answers: ["Minecraft", "Python", "Scratch", "Lua"]
+            },
+            {
+                question: "10. Какой проект вы бы выбрали?",
+                options: [
+                    "Создать мультфильм",
+                    "Написать программу для расчетов",
+                    "Сделать мод для Minecraft",
+                    "Написать скрипт для игры"
+                ],
+                answers: ["Scratch", "Python", "Minecraft", "Lua"]
+            }
+        ];
+
+        const quizContainer = document.getElementById("quiz");
+        const resultContainer = document.getElementById("result");
+        const submitButton = document.getElementById("submit");
+        const courseResult = document.getElementById("course-result");
+        const statsContainer = document.getElementById("stats");
+        const progressBar = document.getElementById("progress-bar");
+
+        let userAnswers = [];
+
+        // Отображаем вопросы
+        function renderQuiz() {
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement("div");
+                questionDiv.className = "question";
+                questionDiv.innerHTML = `<p>${q.question}</p><div class="options">`;
+                
+                q.options.forEach((option, i) => {
+                    questionDiv.querySelector(".options").innerHTML += `
+                        <label class="option">
+                            <input type="radio" name="q${index}" value="${q.answers[i]}">
+                            ${option}
+                        </label>
+                    `;
+                });
+                
+                quizContainer.appendChild(questionDiv);
+            });
+        }
+
+        // Собираем ответы
+        function calculateResult() {
+            const selectedOptions = document.querySelectorAll("input[type='radio']:checked");
+            
+            if (selectedOptions.length !== questions.length) {
+                alert("Пожалуйста, ответьте на все вопросы!");
+                return;
+            }
+
+            userAnswers = Array.from(selectedOptions).map(opt => opt.value);
+            
+            // Подсчитываем результаты
+            const results = {
+                "Lua": 0,
+                "Minecraft": 0,
+                "Python": 0,
+                "Scratch": 0
+            };
+
+            userAnswers.forEach(answer => {
+                results[answer]++;
+            });
+
+            // Находим максимальный результат
+            const maxCourse = Object.keys(results).reduce((a, b) => 
+                results[a] > results[b] ? a : b
+            );
+
+            // Показываем результат
+            resultContainer.style.display = "block";
+            courseResult.textContent = `Вам подходит курс: ${maxCourse}!`;
+            
+            // Анимация прогресс-бара
+            const percentage = (results[maxCourse] / questions.length) * 100;
+            progressBar.style.width = `${percentage}%`;
+            
+            // Показываем статистику
+            statsContainer.innerHTML = "";
+            for (const [course, score] of Object.entries(results)) {
+                statsContainer.innerHTML += `
+                    <div class="stat-item">
+                        <div class="stat-value">${score}</div>
+                        <div>${course}</div>
+                    </div>
+                `;
+            }
+
+            // Прокрутка к результату
+            resultContainer.scrollIntoView({ behavior: "smooth" });
+        }
+
+        // Запускаем опрос
+        renderQuiz();
+        submitButton.addEventListener("click", calculateResult);
+    </script>
+</body>
+</html>
